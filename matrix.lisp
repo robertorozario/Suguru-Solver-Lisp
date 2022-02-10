@@ -8,7 +8,6 @@
           )
 )
 
-
 (setf ma(list '(1 1 2 2 2 5 5)
           '(1 1 3 4 4 6 5)
           '(1 1 4 4 8 6 6)
@@ -18,3 +17,12 @@
           '(11 10 10 12 12 12 12)
        )
 )
+
+#| Forma para acessar posições específicas na matriz
+
+(setf x (nth 1 mp))
+
+(setq y (nth 1 x))
+
+(print y)
+|#
