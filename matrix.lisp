@@ -18,11 +18,31 @@
        )
 )
 
-#| Forma para acessar posições específicas na matriz
+#| Revisar aux e funcionamento geral
 
-(setf x (nth 1 mp))
+(defun counter (lista n)
+    (setf aux (car lista))
+    (setf a (car aux))
+    (setf b (cdr aux))
+    (if (null lista)
+        0
+        (if (= n a)
+            (+ 1 counter b n)
+            (+ 0 counter b n)
+        )
+    )
+)
 
-(setq y (nth 1 x))
+(defun tamArea (lista n)
+    (setf aux (car lista))
+    (setf a (car aux))
+    (setf b (cdr aux))
+    (if (null lista)
+        0
+        (+ (counter a n) (tamArea b n))
+    )
+)
 
-(print y)
+(print tamArea ma 1)
+
 |#
