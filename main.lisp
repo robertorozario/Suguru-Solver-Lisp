@@ -140,7 +140,7 @@
                     (return-from backtrack (backtrack 1 (+ x 1) 0 mp ma s))
                 )
             )
-            (if (> v (tamArea ma (nth y (nth x mp)) ))
+            (if (> v (tamArea ma (nth y (nth x ma)) ))
               (return-from backtrack (backtrack ((car s) + 1) (espacoembranco mp x y) mp ma (cdr s)))
               (if ((verify (geraResultado mp (reverse s) 0 0) ma v 0 0))
                 (if ( < (+ y 1) (compMatrix mp))
