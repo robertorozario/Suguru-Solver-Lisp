@@ -18,31 +18,19 @@
        )
 )
 
-#| Revisar aux e funcionamento geral
-
-(defun counter (lista n)
-    (setf aux (car lista))
-    (setf a (car aux))
-    (setf b (cdr aux))
+(defun counter(lista n)
     (if (null lista)
         0
-        (if (= n a)
-            (+ 1 counter b n)
-            (+ 0 counter b n)
+        (if (= n (car lista))
+            (+ (counter (cdr lista) n) 1)
+            (counter (cdr lista) n)
         )
     )
 )
 
-(defun tamArea (lista n)
-    (setf aux (car lista))
-    (setf a (car aux))
-    (setf b (cdr aux))
+(defun tamArea(lista n)
     (if (null lista)
         0
-        (+ (counter a n) (tamArea b n))
+        (+ (counter (car lista) n) (tamArea (cdr lista) n))
     )
 )
-
-(print tamArea ma 1)
-
-|#
