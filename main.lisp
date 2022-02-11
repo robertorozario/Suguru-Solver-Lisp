@@ -137,29 +137,16 @@
                 (return-from backtrack (backtrack 1 x (+ y 1) mp ma s))
                 (if (>= (+ x 1) (compMatrix mp))
                     (return-from backtrack (backtrack 1 (+ x 1) (+ y 1) mp ma s))
-                    (return-from backtrack (backtrack 1 (+ x 1) 0 mp ma s))
-                )
-            )
-            (if (> v (tamArea ma (nth y (nth x ma)) ))
+                    (return-from backtrack (backtrack 1 (+ x 1) 0 mp ma s))))
+            (if (> v (tamArea ma (nth y (nth x ma))))
               (return-from backtrack (backtrack ((car s) + 1) (espacoembranco mp x y) mp ma (cdr s)))
               (if ((verify (geraResultado mp (reverse s) 0 0) ma v x y))
                 (if ( < (+ y 1) (compMatrix mp))
                     (return-from backtrack (backtrack 1 x (+ y 1) mp ma (cons v s)))
                     (if (>= (+ x 1) (compMatrix mp))
                       (return-from backtrack (backtrack 1 (+ x 1) (+ y 1) mp ma (cons v s)))
-                      (return-from backtrack (backtrack 1 (+ x 1) 0 mp ma (cons v s)))
-                    )
-                )
-                (return-from backtrack (backtrack (+ v 1) x y mp ma s))
-              )
-            )
-
-          )
-      )
-
-  )
-
-)
+                      (return-from backtrack (backtrack 1 (+ x 1) 0 mp ma (cons v s)))))
+                (return-from backtrack (backtrack (+ v 1) x y mp ma s))))))))
 
 
 
