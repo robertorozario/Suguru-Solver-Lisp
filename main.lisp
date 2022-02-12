@@ -36,9 +36,7 @@
                 (return-from espacoembranco (list (- x 1) (- (compMatrix m) 1)))
                 (return-from espacoembranco  (espacoembranco m (- x 1) (- (compMatrix m) 1)))
            )
-        )
-    )
-    (if (= x 0)
+            (if (= x 0)
         (if (= 0 (nth (- y 1) (nth 0 m)))
             (return-from espacoembranco (list 0 (- y 1)))
             (return-from espacoembranco  (espacoembranco m x (- y 1)))
@@ -48,6 +46,9 @@
            (return-from espacoembranco  (espacoembranco m x (- y 1)))
         )
     )
+        )
+    )
+   
 )
 
 (defun comparaArea(mP mA x y a v)
@@ -129,7 +130,7 @@
 
 (defun backtrack (v x y mp ma s)
   (if (or (< x 0) (< y 0))
-      (return-from backtrack NIL)
+      (return-from backtrack 0)
       (if (and ( > x (- (compMatrix mp) 1))  (> y (- (compMatrix mp) 1)))
           (return-from backtrack (geraResultado mp (reverse s) 0 0))
           (if (/= 0 (nth y (nth x mp)))
