@@ -1,3 +1,4 @@
+;Contador para o tamArea
 (defun counter(lista n)
     (if (null lista)
         0
@@ -8,6 +9,7 @@
     )
 )
 
+;Mede o tamanho de uma área
 (defun tamArea(lista n)
     (if (null lista)
         0
@@ -15,19 +17,28 @@
     )
 )
 
+;Tamanho da Matriz (Já que é matriz quadrada, também da o tamanho das linhas)
 (defun compMatrix(matriz)
   (if (null matriz)
     0
     (+ 1 (compMatrix (cdr matriz)))))
 
+;Insere elemento em uma linha da matriz
 (defun insertList(l x v)
   (setf (nth x l) v)
   l)
 
+;Insere a Linha na matriz
 (defun insertMatrix(m x y v)
   (setf (nth x m) (insertList (nth x m) y v))
   m)
 
+#|
+Procura o primeiro espaço não preenchido antes da posição dada, usada no backtrack
+para voltar atrás quando todas as possibilidades de valor na posição atual foram
+inválidas, se chegar a posição (0, 0), devolve uma posição negativa para sinalizar
+que o tabuleiro não tem solução
+|#
 (defun espacoembranco(m x y)
     (if (and (= x 0) (= y 0))
         (return-from espacoembranco (list -1 -1))
@@ -51,7 +62,7 @@
    
 )
 
-            
+;Procura elementos iguais na mesma área            
 (defun comparaArea(mP mA x y a v)
   (if (and (and (and (= a (nth y (nth x mA))) (/= v (nth y (nth x mP)))) (= y (- (compMatrix mP) 1))) (= x (- (compMatrix mP) 1)))
     T
@@ -111,6 +122,7 @@
 (defun verify(mP mA v x y)
   (and (comparaRedor mP x y v) (comparaArea mP mA 0 0 (nth y (nth x mA)) v)))
 
+;Junta a pilha de resultados a matriz principal para dar o resultado final
 (defun geraResultado (mp listaP x y)
 
     (if (or (> x (- (compMatrix mp) 1)) (null listaP))
@@ -129,6 +141,14 @@
     
 )
 
+#|
+Algoritmo de backtracking, faz uma sequência de testes que buscam encontrar os
+valores corretos de cada espaço em branco e adiciona-los a uma pilha solução,
+faz tentativa e erro em cada espaço em branco, se encontra um espaço que não pode
+ser preenchido por nenhum valor, o resultado no topo da pilha solução é desempilhado
+e o código volta a fazer testes na posição anterior usando o valor desempilhado + 1
+como ponto de partida
+|#
 (defun backtrack (v x y mp ma s)
   (if (or (< x 0) (< y 0))
       (return-from backtrack 0)
